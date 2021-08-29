@@ -13,18 +13,30 @@ WHITE = (255,255,255)
 RED = (255,0,0)
 
 FPS = 60
+SPACESHIP_WIDTH, SPACESHIP_HEIGHT = 55, 40 
 
 YELLOW_SPACESHIP_IMAGE = pygame.image.load(
     os.path.join('Assets', 'spaceship_yellow.bmp'))
+
+YELLOW_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(
+    YELLOW_SPACESHIP_IMAGE, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)), 90)
+
 RED_SPACESHIP_IMAGE = pygame.image.load(
     os.path.join('Assets', 'spaceship_red.bmp'))
 
-def draw_window():
-    WIN.fill((RED))
-    WIN.blit(YELLOW_SPACESHIP_IMAGE, (300,100))
+RED_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(
+    RED_SPACESHIP_IMAGE, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)), 270)
+
+def draw_window(red, yellow):
+    WIN.fill((WHITE))
+    WIN.blit(YELLOW_SPACESHIP, (yellow.x, yellow.y))
+    WIN.blit(RED_SPACESHIP, (red.x, red.y))
     pygame.display.update()
 
 def main():
+    red = pygame.Rect(700, 300, SPACESHIP_WIDTH, SPACESHIP_HEIGHT)
+    yellow = pygame.Rect(100, 300, SPACESHIP_WIDTH, SPACESHIP_HEIGHT)
+
     clock = pygame.time.Clock()
     run = True
     while run:
@@ -32,8 +44,8 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-        
-        draw_window()
+        yellow.x += 1
+        draw_window(red, yellow)
     pygame.QUIT()
 
 if __name__ == "__main__":
