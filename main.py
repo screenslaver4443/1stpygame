@@ -28,6 +28,26 @@ RED_SPACESHIP_IMAGE = pygame.image.load(
 RED_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(
     RED_SPACESHIP_IMAGE, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)), 270)
 
+def yellow_handle_movement(keys_pressed, yellow):
+        if keys_pressed[pygame.K_a]: #yellow player to Left
+            yellow.x -= VEL
+        if keys_pressed[pygame.K_d]: #yellow player to Right
+            yellow.x += VEL
+        if keys_pressed[pygame.K_w]: #yellow player to Up
+            yellow.y -= VEL
+        if keys_pressed[pygame.K_s]: #yellow player to Down
+            yellow.y += VEL
+            
+def red_handle_movement(keys_pressed, red): #Red Player Movement
+        if keys_pressed[pygame.K_LEFT]: #red player to Left
+            red.x -= VEL
+        if keys_pressed[pygame.K_RIGHT]: #red player to Right
+            red.x += VEL
+        if keys_pressed[pygame.K_UP]: #red player to Up
+            red.y -= VEL
+        if keys_pressed[pygame.K_DOWN]: #red player to Down
+            red.y += VEL
+
 def draw_window(red, yellow):
     WIN.fill((WHITE))
     WIN.blit(YELLOW_SPACESHIP, (yellow.x, yellow.y))
@@ -46,14 +66,8 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
         keys_pressed = pygame.key.get_pressed()
-        if keys_pressed[pygame.K_a]: #Left player to Left
-            yellow.x -= VEL
-        if keys_pressed[pygame.K_d]: #Left player to Right
-            yellow.x += VEL
-        if keys_pressed[pygame.K_w]: #Left player to Up
-            yellow.y -= VEL
-        if keys_pressed[pygame.K_s]: #Left player to Down
-            yellow.y += VEL
+        yellow_handle_movement(keys_pressed, yellow)
+        red_handle_movement(keys_pressed, red)
         draw_window(red, yellow)
     pygame.QUIT()
 
