@@ -4,6 +4,7 @@
 import pygame
 import os
 
+pygame.init()
 WIDTH, HEIGHT = 900, 500
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("First Game")
@@ -14,9 +15,9 @@ RED = (255,0,0)
 FPS = 60
 
 YELLOW_SPACESHIP_IMAGE = pygame.image.load(
-    os.path.join('Assets', 'spaceship_yellow.png'))
+    os.path.join('Assets', 'spaceship_yellow.bmp'))
 RED_SPACESHIP_IMAGE = pygame.image.load(
-    os.path.join('Assets', 'spaceship_red.png'))
+    os.path.join('Assets', 'spaceship_red.bmp'))
 
 def draw_window():
     WIN.fill((RED))
