@@ -9,6 +9,11 @@ pygame.display.set_caption("First Game")
 
 WHITE = (255,255,255)
 RED = (255,0,0)
+
+def draw_window():
+    WIN.fill((RED))
+    pygame.display.update()
+
 def main():
 
     run = True
@@ -17,9 +22,8 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-        WIN.fill((RED))
-        pygame.display.update()
-
+        
+        draw_window()
     pygame.QUIT()
 
 if __name__ == "__main__":
