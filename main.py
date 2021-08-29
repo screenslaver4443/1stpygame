@@ -10,15 +10,17 @@ pygame.display.set_caption("First Game")
 WHITE = (255,255,255)
 RED = (255,0,0)
 
+FPS = 60
+
 def draw_window():
     WIN.fill((RED))
     pygame.display.update()
 
 def main():
-
+    clock = pygame.time.Clock()
     run = True
     while run:
-
+        clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
