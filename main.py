@@ -14,6 +14,7 @@ RED = (255,0,0)
 
 FPS = 60
 SPACESHIP_WIDTH, SPACESHIP_HEIGHT = 55, 40 
+VEL = 5
 
 YELLOW_SPACESHIP_IMAGE = pygame.image.load(
     os.path.join('Assets', 'spaceship_yellow.bmp'))
@@ -44,7 +45,15 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-        yellow.x += 1
+        keys_pressed = pygame.key.get_pressed()
+        if keys_pressed[pygame.K_a]: #Left player to Left
+            yellow.x -= VEL
+        if keys_pressed[pygame.K_d]: #Left player to Right
+            yellow.x += VEL
+        if keys_pressed[pygame.K_w]: #Left player to Up
+            yellow.y -= VEL
+        if keys_pressed[pygame.K_s]: #Left player to Down
+            yellow.y += VEL
         draw_window(red, yellow)
     pygame.QUIT()
 
