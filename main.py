@@ -11,10 +11,12 @@ pygame.display.set_caption("First Game")
 
 WHITE = (255,255,255)
 RED = (255,0,0)
+BLACK = (0, 0, 0)
 
 FPS = 60
 SPACESHIP_WIDTH, SPACESHIP_HEIGHT = 55, 40 
 VEL = 5
+BORDER = pygame.Rect(WIDTH/2-5, 0, 10, HEIGHT)
 
 YELLOW_SPACESHIP_IMAGE = pygame.image.load(
     os.path.join('Assets', 'spaceship_yellow.bmp'))
@@ -29,29 +31,30 @@ RED_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(
     RED_SPACESHIP_IMAGE, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)), 270)
 
 def yellow_handle_movement(keys_pressed, yellow):
-        if keys_pressed[pygame.K_a]: #yellow player to Left
+        if keys_pressed[pygame.K_a] and yellow.x-VEL>0: #yellow player to Left
             yellow.x -= VEL
-        if keys_pressed[pygame.K_d]: #yellow player to Right
+        if keys_pressed[pygame.K_d] and yellow.x-VEL + yellow.width <BORDER.x: #yellow player to Right
             yellow.x += VEL
-        if keys_pressed[pygame.K_w]: #yellow player to Up
+        if keys_pressed[pygame.K_w] and yellow.y-VEL > 0: #yellow player to Up
             yellow.y -= VEL
-        if keys_pressed[pygame.K_s]: #yellow player to Down
+        if keys_pressed[pygame.K_s] and yellow.y-VEL + yellow.height < HEIGHT-15: #yellow player to Down
             yellow.y += VEL
             
 def red_handle_movement(keys_pressed, red): #Red Player Movement
-        if keys_pressed[pygame.K_LEFT]: #red player to Left
+        if keys_pressed[pygame.K_LEFT] and red.x-VEL> BORDER.x + BORDER.width: #red player to Left
             red.x -= VEL
-        if keys_pressed[pygame.K_RIGHT]: #red player to Right
+        if keys_pressed[pygame.K_RIGHT] and red.x-VEL+red.width < WIDTH: #red player to Right
             red.x += VEL
-        if keys_pressed[pygame.K_UP]: #red player to Up
+        if keys_pressed[pygame.K_UP] and red.y-VEL > 0 : #red player to Up
             red.y -= VEL
-        if keys_pressed[pygame.K_DOWN]: #red player to Down
+        if keys_pressed[pygame.K_DOWN] and red.y-VEL+ red.height < HEIGHT-15: #red player to Down
             red.y += VEL
 
 def draw_window(red, yellow):
     WIN.fill((WHITE))
     WIN.blit(YELLOW_SPACESHIP, (yellow.x, yellow.y))
     WIN.blit(RED_SPACESHIP, (red.x, red.y))
+    pygame.draw.rect(WIN, BLACK, BORDER)
     pygame.display.update()
 
 def main():
