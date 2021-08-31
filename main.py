@@ -19,6 +19,7 @@ SPACESHIP_WIDTH, SPACESHIP_HEIGHT = 55, 40
 VEL = 5
 BULLET_VEL = 7
 MAX_BULLETS = 3
+MAX_HEALTH = 10
 
 YELLOW_HIT = pygame.USEREVENT + 1
 RED_HIT = pygame.USEREVENT + 2
@@ -94,6 +95,8 @@ def main():
     red_bullets = []
     yellow_bullets = []
 
+    red_health = MAX_HEALTH
+    yellow_health = MAX_HEALTH
     clock = pygame.time.Clock()
     run = True
     while run:
@@ -108,6 +111,11 @@ def main():
                 if event.key == pygame.K_RSHIFT and len(red_bullets)< MAX_BULLETS:
                     bullet = pygame.Rect(red.x, red.y+red.height//2 - 2, 10, 5)
                     red_bullets.append(bullet)
+            if event.type == RED_HIT:
+                red_health -= 1
+            if event.type == YELLOW_HIT:
+                yellow_health -= 1
+
         keys_pressed = pygame.key.get_pressed()
         yellow_handle_movement(keys_pressed, yellow)
         red_handle_movement(keys_pressed, red)
