@@ -20,10 +20,10 @@ BULLET_FIRE_SOUND = pygame.mixer.Sound('Assets/Gun+Silencer.mp3')
 
 FPS = 60
 SPACESHIP_WIDTH, SPACESHIP_HEIGHT = 55, 40 
-VEL = 5
-BULLET_VEL = 7
-MAX_BULLETS = 3
-MAX_HEALTH = 10
+VEL = 6
+BULLET_VEL = 12
+MAX_BULLETS = 5
+MAX_HEALTH = 8
 
 YELLOW_HIT = pygame.USEREVENT + 1
 RED_HIT = pygame.USEREVENT + 2
@@ -99,7 +99,7 @@ def draw_window(red, yellow, red_bullets, yellow_bullets, red_health, yellow_hea
     WIN.blit(yellow_health_text, (10, 10))
     WIN.blit(YELLOW_SPACESHIP, (yellow.x, yellow.y))
     WIN.blit(RED_SPACESHIP, (red.x, red.y))
-    pygame.draw.rect(WIN, BLACK, BORDER)
+    pygame.draw.rect(WIN, WHITE, BORDER)
 
 
     for bullet in red_bullets:
