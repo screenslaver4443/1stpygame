@@ -58,13 +58,13 @@ def yellow_handle_movement(keys_pressed, yellow):
             yellow.y += VEL
             
 def red_handle_movement(keys_pressed, red): #Red Player Movement
-        if keys_pressed[pygame.K_LEFT] and red.x-VEL> BORDER.x + BORDER.width: #red player to Left
+        if keys_pressed[pygame.K_j] and red.x-VEL> BORDER.x + BORDER.width: #red player to Left
             red.x -= VEL
-        if keys_pressed[pygame.K_RIGHT] and red.x-VEL+red.width < WIDTH: #red player to Right
+        if keys_pressed[pygame.K_l] and red.x-VEL+red.width < WIDTH: #red player to Right
             red.x += VEL
-        if keys_pressed[pygame.K_UP] and red.y-VEL > 0 : #red player to Up
+        if keys_pressed[pygame.K_i] and red.y-VEL > 0 : #red player to Up
             red.y -= VEL
-        if keys_pressed[pygame.K_DOWN] and red.y-VEL+ red.height < HEIGHT-15: #red player to Down
+        if keys_pressed[pygame.K_k] and red.y-VEL+ red.height < HEIGHT-15: #red player to Down
             red.y += VEL
 def handle_bullets(yellow_bullets, red_bullets, yellow, red):
     for bullet in yellow_bullets:
